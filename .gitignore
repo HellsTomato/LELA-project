@@ -1,0 +1,13 @@
+# Maven build output
+backend/target/
+
+# Frontend build output
+frontend/node_modules/
+frontend/dist/
+
+# IDE and system files
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db

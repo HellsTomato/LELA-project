@@ -1,0 +1,98 @@
+:root {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #12263a;
+  background: linear-gradient(120deg, #f4f8ff 0%, #e9f3ff 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+h1 {
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  margin-top: 0;
+  color: #3e5c76;
+}
+
+.panel {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+  box-shadow: 0 8px 20px rgba(14, 56, 99, 0.08);
+}
+
+.row-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button {
+  border: none;
+  background: #2a6f97;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1f5f85;
+}
+
+button.active {
+  background: #014f86;
+}
+
+.inline-btn {
+  margin-left: 12px;
+}
+
+.lesson-box {
+  margin-top: 10px;
+  background: #f7fbff;
+  border: 1px solid #dbe9f6;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.error {
+  margin-top: 14px;
+  color: #8b0000;
+  background: #ffe6e6;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.success {
+  border-left: 4px solid #2a9d8f;
+}
+
+pre {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 14px;
+  }
+}
