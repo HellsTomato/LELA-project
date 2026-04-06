@@ -2,6 +2,8 @@ package com.lela.backend.repository;
 
 import com.lela.backend.entity.Progress;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
@@ -10,5 +12,8 @@ import java.util.Optional;
  */
 public interface ProgressRepository extends JpaRepository<Progress, Long> {
 
-    Optional<Progress> findByUserIdAndLessonId(Long userId, Long lessonId);
+    @Query("SELECT p FROM Progress p WHERE p.user.id = :userId AND p.lesson.id = :lessonId")
+    Optional<Progress> findByUserIdAndLessonId(@Param("userId") Long userId, @Param("lessonId") Long lessonId);
+
+    void deleteByUserId(Long userId);
 }

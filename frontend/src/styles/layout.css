@@ -1,0 +1,121 @@
+/* ============================================ */
+/* LAYOUT & CONTAINER */
+/* ============================================ */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #6b7280;
+  margin-bottom: 0;
+}
+
+/* ============================================ */
+/* UNIT LIST */
+/* ============================================ */
+.unit-list {
+  margin-top: 2rem;
+}
+
+.unit-list h3 {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* ============================================ */
+/* LESSON CONTAINER */
+/* ============================================ */
+.lesson-container {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+}
+
+.lesson-container h1 {
+  margin-bottom: 1rem;
+}
+
+.lesson-content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  margin: 2rem 0;
+  color: #374151;
+  background: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #3b82f6;
+}
+
+/* ============================================ */
+/* STATS GRID */
+/* ============================================ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #f0f9ff;
+  border-radius: 8px;
+  border: 1px solid #bfdbfe;
+}
+
+.stat-box {
+  text-align: center;
+  padding: 1rem;
+}
+
+.stat-box small {
+  display: block;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.stat-box strong {
+  display: block;
+  font-size: 1.875rem;
+  color: #1e40af;
+  font-weight: 700;
+}
+
+/* ============================================ */
+/* BACK LINK */
+/* ============================================ */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.back-link:hover {
+  color: #111827;
+}
+
+.back-link::before {
+  content: "←";
+}
