@@ -1,7 +1,5 @@
 # LELA MVP: рабочая область
 
-Минимальный full-stack учебный проект для демонстрации:
-
 - Frontend: React (Vite)
 - Backend: Java + Spring Boot
 - База данных: PostgreSQL
@@ -64,7 +62,7 @@ LELA/
 └─ README.md
 ```
 
-## 2) Минимальная доменная модель
+## 2) доменная модель
 
 - User
 - Course
