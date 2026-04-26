@@ -3,6 +3,8 @@ package com.lela.backend.controller;
 import com.lela.backend.dto.CourseResponse;
 import com.lela.backend.dto.UnitResponse;
 import com.lela.backend.service.CourseService;
+import jakarta.validation.constraints.Positive;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api")
+@Validated
 public class CourseController {
 
     private final CourseService courseService;
@@ -34,7 +37,7 @@ public class CourseController {
      * GET /api/courses/{id}/units
      */
     @GetMapping("/courses/{id}/units")
-    public List<UnitResponse> getCourseUnits(@PathVariable("id") Long courseId) {
+    public List<UnitResponse> getCourseUnits(@PathVariable("id") @Positive(message = "course id must be positive") Long courseId) {
         return courseService.getUnitsByCourseId(courseId);
     }
 }

@@ -11,6 +11,7 @@ import com.lela.backend.repository.ProgressRepository;
 import com.lela.backend.repository.RewardRepository;
 import com.lela.backend.repository.UserRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -80,20 +81,20 @@ public class LessonService {
 
         Optional<Progress> existingProgress = progressRepository.findByUserIdAndLessonId(userId, lessonId);
         if (existingProgress.isPresent()) {
-            return new CompleteLessonResponse(
-                    "Lesson was already completed earlier",
-                    user.getId(),
-                    lesson.getId(),
-                    0,
-                    user.getPoints(),
-                    false,
-                    extractSortedRewardNames(user.getUnlockedRewards())
-            );
+                        return alreadyCompletedResponse(user, lesson);
         }
 
         // Persist completion fact first so lesson completion is stored even if reward logic changes later.
-        Progress progress = new Progress(user, lesson, LocalDateTime.now());
-        progressRepository.save(progress);
+                try {
+                        Progress progress = new Progress(user, lesson, LocalDateTime.now());
+                        progressRepository.saveAndFlush(progress);
+                } catch (DataIntegrityViolationException ex) {
+                        if (progressRepository.findByUserIdAndLessonId(userId, lessonId).isPresent()) {
+                                User freshUser = userRepository.findById(userId).orElse(user);
+                                return alreadyCompletedResponse(freshUser, lesson);
+                        }
+                        throw ex;
+                }
 
         int pointsEarned = lesson.getPointsReward() == null ? 0 : lesson.getPointsReward();
         user.setPoints(user.getPoints() + pointsEarned);
@@ -125,6 +126,18 @@ public class LessonService {
                 extractSortedRewardNames(user.getUnlockedRewards())
         );
     }
+
+        private CompleteLessonResponse alreadyCompletedResponse(User user, Lesson lesson) {
+                return new CompleteLessonResponse(
+                                "Lesson was already completed earlier",
+                                user.getId(),
+                                lesson.getId(),
+                                0,
+                                user.getPoints(),
+                                false,
+                                extractSortedRewardNames(user.getUnlockedRewards())
+                );
+        }
 
     private List<String> extractSortedRewardNames(Set<Reward> rewards) {
         return rewards.stream()

@@ -5,6 +5,8 @@ import com.lela.backend.dto.CompleteLessonResponse;
 import com.lela.backend.dto.LessonResponse;
 import com.lela.backend.service.LessonService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api")
+@Validated
 public class LessonController {
 
     private final LessonService lessonService;
@@ -25,7 +28,7 @@ public class LessonController {
      * GET /api/lessons/{id}
      */
     @GetMapping("/lessons/{id}")
-    public LessonResponse getLesson(@PathVariable("id") Long lessonId) {
+    public LessonResponse getLesson(@PathVariable("id") @Positive(message = "lesson id must be positive") Long lessonId) {
         return lessonService.getLessonById(lessonId);
     }
 
@@ -39,7 +42,7 @@ public class LessonController {
      * }
      */
     @PostMapping("/lessons/{id}/complete")
-    public CompleteLessonResponse completeLesson(@PathVariable("id") Long lessonId,
+    public CompleteLessonResponse completeLesson(@PathVariable("id") @Positive(message = "lesson id must be positive") Long lessonId,
                                                  @Valid @RequestBody CompleteLessonRequest request) {
         return lessonService.completeLesson(lessonId, request.getUserId());
     }

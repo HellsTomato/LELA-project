@@ -1,6 +1,7 @@
 package com.lela.backend.dto;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 /**
  * API request body for lesson completion endpoint.
@@ -10,6 +11,7 @@ import jakarta.validation.constraints.NotNull;
 public class CompleteLessonRequest {
 
     @NotNull(message = "userId is required")
+    @Positive(message = "userId must be positive")
     private Long userId;
 
     public CompleteLessonRequest() {
